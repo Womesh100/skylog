@@ -26,3 +26,11 @@
 3. use state hook - useState() is a function returns an array that contains a variable and a function to update the variable
 4. use effect hook
 5. use reducer hook
+
+# Manage State by Reducer Hook
+
+1.  define reducer
+2.  update fetch data
+3.  get state from useReducer
+
+# npm install use-reducer-logger --force => a package to log state changes
