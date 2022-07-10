@@ -32,5 +32,6 @@
 1.  define reducer
 2.  update fetch data
 3.  get state from useReducer
+4.  handle loading box case during ajax call and if error show errors
 
 # npm install use-reducer-logger --force => a package to log state changes
