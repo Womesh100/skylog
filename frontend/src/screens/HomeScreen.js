@@ -1,14 +1,26 @@
 // define a functional component for Home Screen to route
 
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import data from '../data';
+//import data from '../data';
+import axios from 'axios';
 
 function HomeScreen() {
+  // define a state to save the product from backend
+  const [products, setProduts] = useState([]); // creating default useState() array
+  useEffect(() => {
+    // use this function only one time after rendering a call
+    const fetchData = async () => {
+      const result = await axios.get('/api/products'); // send ajax request using axios and put in a result variable
+      setProduts(result.data);
+    };
+    fetchData();
+  }, []);
   return (
     <div>
       <h1>Featured Products</h1>
       <div className="products">
-        {data.products.map(
+        {products.map(
           //jsx expession
           (product) => (
             <div className="product" key={product.slug}>
