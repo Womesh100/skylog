@@ -13,8 +13,11 @@ body {
   justify-content: center;
 }
 
+.site-container {
+  min-height: 100vh;
+}
 main {
-  padding: 1rem;
+  flex: 1; /* used to occupy space between header and footer*/
 }
 
 .product {
