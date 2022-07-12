@@ -35,3 +35,9 @@
 4.  handle loading box case during ajax call and if error show errors
 
 # npm install use-reducer-logger --force => a package to log state changes
+
+# Create Product and Rating Component
+
+1.  create Rating component
+2.  Create Product component
+3.  Use Rating component in Product component

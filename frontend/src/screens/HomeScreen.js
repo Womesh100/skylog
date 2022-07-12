@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 //import data from '../data';
 import axios from 'axios';
 import logger from 'use-reducer-logger';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -52,25 +54,28 @@ function HomeScreen() {
         ) : error ? (
           <div>{error}</div> // show error message
         ) : (
-          products.map(
-            //jsx expession
-            (product) => (
-              <div className="product" key={product.slug}>
-                <Link to={`/product/${product.slug}`}>
-                  <img src={product.Image} alt={product.Image} />{' '}
-                </Link>
-                <div className="product-info">
+          <Row>
+            {/*jsx expession to get product info*/}
+            {products.map((product) => (
+              <Col sm={6} md={4} lg={3} className="mb-3">
+                {/* mb-3 = margin from bottom is 3 rem */}
+                <div className="product" key={product.slug}>
                   <Link to={`/product/${product.slug}`}>
-                    <p>{product.name}</p>
+                    <img src={product.Image} alt={product.Image} />
                   </Link>
-                  <p>
-                    <strong>{product.price}</strong>
-                  </p>
-                  <button>Add to Cart</button>
+                  <div className="product-info">
+                    <Link to={`/product/${product.slug}`}>
+                      <p>{product.name}</p>
+                    </Link>
+                    <p>
+                      <strong>{product.price}</strong>
+                    </p>
+                    <button>Add to Cart</button>
+                  </div>
                 </div>
-              </div>
-            )
-          )
+              </Col>
+            ))}
+          </Row>
         )}
       </div>
     </div>
