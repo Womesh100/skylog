@@ -1,12 +1,13 @@
 // define a functional component for Home Screen to route
 
 import { useEffect, useReducer /* useState */ } from 'react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 //import data from '../data';
 import axios from 'axios';
 import logger from 'use-reducer-logger';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Product from '../components/Product';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -59,20 +60,8 @@ function HomeScreen() {
             {products.map((product) => (
               <Col sm={6} md={4} lg={3} className="mb-3">
                 {/* mb-3 = margin from bottom is 3 rem */}
-                <div className="product" key={product.slug}>
-                  <Link to={`/product/${product.slug}`}>
-                    <img src={product.Image} alt={product.Image} />
-                  </Link>
-                  <div className="product-info">
-                    <Link to={`/product/${product.slug}`}>
-                      <p>{product.name}</p>
-                    </Link>
-                    <p>
-                      <strong>{product.price}</strong>
-                    </p>
-                    <button>Add to Cart</button>
-                  </div>
-                </div>
+                {/* Creating a product component and use product in multiple places*/}
+                <Product product={product}></Product>
               </Col>
             ))}
           </Row>
