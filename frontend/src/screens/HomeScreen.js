@@ -58,7 +58,7 @@ function HomeScreen() {
           <Row>
             {/*jsx expession to get product info*/}
             {products.map((product) => (
-              <Col sm={6} md={4} lg={3} className="mb-3">
+              <Col key={product.slug} sm={6} md={4} lg={3} className="mb-3">
                 {/* mb-3 = margin from bottom is 3 rem */}
                 {/* Creating a product component and use product in multiple places*/}
                 <Product product={product}></Product>

@@ -1,22 +1,26 @@
 import { Link } from 'react-router-dom';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+
+/**using card component from bootstrap to create a box in home screen for each product items */
 
 function Product(props) {
   const { product } = props;
   return (
-    <div className="product" key={product.slug}>
+    <Card>
       <Link to={`/product/${product.slug}`}>
-        <img src={product.Image} alt={product.Image} />
+        {/**card-img-top is from bootstrap card to put image on top of the card */}
+        <img src={product.Image} className="card-img-top" alt={product.Image} />
       </Link>
-      <div className="product-info">
+      <Card.Body>
         <Link to={`/product/${product.slug}`}>
-          <p>{product.name}</p>
+          <Card.Title>{product.name}</Card.Title>
         </Link>
-        <p>
-          <strong>{product.price}</strong>
-        </p>
-        <button>Add to Cart</button>
-      </div>
-    </div>
+        <Card.Text>${product.price}</Card.Text>
+        <Button>Add to cart</Button>
+        <Button>Buy Now</Button>
+      </Card.Body>
+    </Card>
   );
 }
 
