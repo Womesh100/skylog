@@ -7,17 +7,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-header {
-  background-color: #404040;
-  padding: 1rem;
-}
-
-header a {
-  color: #ffffff;
-  font-weight: bold;
-  text-decoration: none;
-}
-
 .products {
   display: flex; /* put items next to each other */
   flex-wrap: wrap; /* if no space new product will be pushed to new line */

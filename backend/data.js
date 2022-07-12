@@ -21,7 +21,7 @@ const data = {
       slug: 'adidas-slim-shirt',
       category: 'shirts',
       Image: '/images/p2.jpg',
-      price: 120,
+      price: 100,
       countInStock: 10,
       brand: 'adidas',
       rating: 4.5,

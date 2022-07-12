@@ -68,3 +68,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# Add bootstrap UI Framework
+
+1. npm install react-bootstrap bootstrap --legacy-peer-deps
+2. update App.js
+3. npm install react-router-bootstrap --legacy-peer-deps package for LinkContainer
