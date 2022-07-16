@@ -20,6 +20,10 @@ main {
   flex: 1; /* used to occupy space between header and footer*/
 }
 
+.rating span {
+  color: #ffc000; /* changing rating color to gold*/
+}
+
 .product {
   border: 1px #404040 solid;
   margin: 1rem; /* create space between items */
