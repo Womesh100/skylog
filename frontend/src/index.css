@@ -20,6 +20,12 @@ main {
   flex: 1; /* used to occupy space between header and footer*/
 }
 
+/* changing btn color*/
+.btn-primary {
+  background-color: #f0c040;
+  color: #000000;
+}
+
 .rating span {
   color: #ffc000; /* changing rating color to gold*/
 }
