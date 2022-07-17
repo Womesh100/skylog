@@ -43,3 +43,8 @@ main {
 .product-info {
   padding: 1rem;
 }
+
+/* set image large with max size for ProductScreen page */
+.img-large {
+  max-width: 100%;
+}

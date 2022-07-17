@@ -4,6 +4,13 @@
 import axios from 'axios';
 import { useEffect, useReducer } from 'react';
 import { useParams } from 'react-router-dom';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import Badge from 'react-bootstrap/Badge';
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Rating from '../components/Rating';
 
 /**
  * fetch products from backend
@@ -67,9 +74,86 @@ function ProductScreen() {
   ) : error ? (
     <div>{error}</div>
   ) : (
-    <div>{product.name}</div>
+    // to show product information action
+    <div>
+      <Row>
+        {/**
+         * show 3 columns
+         * first occupy half of the width for image
+         * second occupy 3/12 of the width for product_info
+         * third occupy 3/12 of the width for card (product_action)
+         */}
+        <Col md={6}>
+          <img
+            className="img-large"
+            src={product.Image}
+            alt={product.name}
+          ></img>
+        </Col>
+        {/**
+         * Display list of items
+         * used ListGroup to show items in a list
+         * set variant to flush to remove border and curve from it
+         * items in a list group is ListGroup.Item
+         * first item is product name
+         * second item rating and reviews
+         * third item Price
+         * forth product description
+         * */}
+        <Col md={3}>
+          <ListGroup variant="flush">
+            <ListGroup.Item>
+              <h1>{product.name}</h1>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Rating
+                rating={product.rating}
+                numReviews={product.numReviews}
+              ></Rating>
+            </ListGroup.Item>
+            <ListGroup.Item>Price : ${product.price}</ListGroup.Item>
+            <ListGroup.Item>
+              Description :<p>{product.description}</p>
+            </ListGroup.Item>
+          </ListGroup>
+        </Col>
+        <Col md={3}>
+          <Card>
+            <Card.Body>
+              <ListGroup variant="flush">
+                <ListGroup.Item>
+                  <Row>
+                    <Col>Price: </Col>
+                    <Col>${product.price}</Col>
+                  </Row>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  <Row>
+                    <Col>Status: </Col>
+                    <Col>
+                      {product.countInStock > 0 ? (
+                        <Badge bg="success">In Stock</Badge>
+                      ) : (
+                        <Badge bg="danger">Out of stock</Badge>
+                      )}
+                    </Col>
+                  </Row>
+                </ListGroup.Item>
+
+                {product.countInStock > 0 && (
+                  <ListGroup.Item>
+                    <div className="d-grid">
+                      <Button variant="primary">Add to Cart</Button>
+                      {/* button with full width */}
+                    </div>
+                  </ListGroup.Item>
+                )}
+              </ListGroup>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </div>
   );
 }
 export default ProductScreen;
-
-// to show product information action
