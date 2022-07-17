@@ -12,6 +12,9 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Rating from '../components/Rating';
 import { Helmet } from 'react-helmet-async';
+import LoadingBox from '../components/LoadingBox';
+import MessageBox from '../components/MessageBox';
+import { getError } from '../util';
 
 /**
  * fetch products from backend
@@ -51,7 +54,7 @@ function ProductScreen() {
         const result = await axios.get(`/api/products/slug/${slug}`); // send ajax request using axios and put in a result variable
         dispatch({ type: 'FETCH_SUCCESS', payload: result.data });
       } catch (err) {
-        dispatch({ type: 'FETCH_FAIL', payload: err.message });
+        dispatch({ type: 'FETCH_FAIL', payload: getError(err) }); //getError from utils and pass error object to function
       }
       //    setProduts(result.data);
     };
@@ -71,9 +74,9 @@ function ProductScreen() {
    * otherwise show data of the product
    * */
   return loading ? (
-    <div>loading....</div>
+    <LoadingBox />
   ) : error ? (
-    <div>{error}</div>
+    <MessageBox variant="danger">{error}</MessageBox>
   ) : (
     // to show product information action
     <div>

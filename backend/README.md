@@ -50,3 +50,12 @@
 4.  Add product title in title page
     a. use package react-helmet async
     b. npm install react-helmet-async
+
+# Create Loading and Message Component
+
+(Add spin loading and if user enter wrong url then show as message)
+
+1.  Create loading component
+2.  use spinner component
+3.  create message component
+4.  create utils.js to define getError function
