@@ -46,3 +46,7 @@
 
 1.  fetch product from backend
 2.  create 3 columns for image, info and action
+3.  Add space from top
+4.  Add product title in title page
+    a. use package react-helmet async
+    b. npm install react-helmet-async
