@@ -25,6 +25,7 @@ const reducer = (state, action) => {
 };
 
 function HomeScreen() {
+  // checking the state of an object in console we use logger (to test)
   const [{ loading, error, products }, dispatch] = useReducer(logger(reducer), {
     products: [],
     loading: true,

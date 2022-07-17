@@ -10,6 +10,16 @@ const app = express();
 app.get('/api/products', (req, res) => {
   res.send(data.products);
 });
+// :slug get slug that user enters - backend upi
+app.get('/api/products/slug/:slug', (req, res) => {
+  //to get data for this product from backend
+  const product = data.products.find((x) => x.slug === req.params.slug);
+  if (product) {
+    res.send(product);
+  } else {
+    res.status(404).send({ message: 'Product Not Found' });
+  }
+});
 
 // defining a port and try to get port from process.env to access free port
 const port = process.env.PORT || 5000;
