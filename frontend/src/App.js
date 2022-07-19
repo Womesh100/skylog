@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 import Navbar from 'react-bootstrap/Navbar';
-import Container from 'react-bootstrap/container';
+import Container from 'react-bootstrap/Container';
 import { LinkContainer } from 'react-router-bootstrap';
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
           flex is added for footer text*/}
       <div className="d-flex flex-column site-container">
         <header className="">
-          <Navbar bg="dark" varient="dark">
+          <Navbar bg="dark" variant="dark">
             <Container>
               <LinkContainer to="/">
                 <Navbar.Brand>SKYLOG</Navbar.Brand>
@@ -21,7 +21,6 @@ function App() {
           </Navbar>
         </header>
         <main>
-          {' '}
           {/**
            * adding space in page from top
            * mt-3 => margin from top is 3rem.

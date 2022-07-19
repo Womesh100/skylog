@@ -107,8 +107,8 @@ function ProductScreen() {
         <Col md={3}>
           <ListGroup variant="flush">
             <ListGroup.Item>
+              {/**for title */}
               <Helmet>
-                {/**for title */}
                 <title>{product.name}</title>
               </Helmet>
               <h1>{product.name}</h1>
