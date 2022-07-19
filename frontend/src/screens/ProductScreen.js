@@ -2,7 +2,7 @@
 // We need a hook to do this from react router dom and name of the hook is @params
 
 import axios from 'axios';
-import { useEffect, useReducer } from 'react';
+import { useContext, useEffect, useReducer } from 'react';
 import { useParams } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -15,6 +15,7 @@ import { Helmet } from 'react-helmet-async';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { getError } from '../util';
+import { Store } from '../Store';
 
 /**
  * fetch products from backend
@@ -65,6 +66,19 @@ function ProductScreen() {
    * means user changes between pages
    * fetchData() will dispatch again and get new product from backend
    */
+  //get the context
+  const { state, dispatch: cxtDispatch } = useContext(Store);
+  //usecontext = we have access to state of context and change the context.
+  const addToCartHandler = () => {
+    /**
+     * to add items in the cart
+     * we need to dispatch an action on react context
+     */
+    cxtDispatch({
+      type: 'CART_ADD_ITEM',
+      payload: { ...product, quantity: 1 },
+    });
+  };
   // UI part
 
   /***
@@ -151,7 +165,9 @@ function ProductScreen() {
                 {product.countInStock > 0 && (
                   <ListGroup.Item>
                     <div className="d-grid">
-                      <Button variant="primary">Add to Cart</Button>
+                      <Button onClick={addToCartHandler} variant="primary">
+                        Add to Cart
+                      </Button>
                       {/* button with full width */}
                     </div>
                   </ListGroup.Item>

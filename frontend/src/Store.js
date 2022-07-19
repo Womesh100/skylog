@@ -3,6 +3,33 @@ import { createContext, useReducer } from 'react';
 // creating a context here.
 export const Store = createContext();
 
+//define reducer and initial state for StoreProvider
+//initial state
+const initialState = {
+  cart: {
+    cartItems: [],
+  },
+};
+
+//Reducer
+function reducer(state, action) {
+  switch (action.type) {
+    case 'CART_ADD_ITEM':
+      //return as keep all previous values and only update cart items
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          cartItems: [
+            ...state.cart.cartItems /**save previous value */,
+            action.payload /** update new cart */,
+          ],
+        },
+      };
+    default:
+      return state;
+  }
+}
 /**
  * StoreProvider -> a component
  * A Wrapper to our react app,
@@ -21,3 +48,5 @@ export function StoreProvider(props) {
    * */
   return <Store.Provider value={value}>{props.children}</Store.Provider>;
 }
+
+//Now go to index.js and wrap the application in store provider
