@@ -90,7 +90,7 @@ function ProductScreen() {
 
     cxtDispatch({
       type: 'CART_ADD_ITEM',
-      payload: { ...product, quantity: 1 },
+      payload: { ...product, quantity }, //getting quantity value from cart else get quantity as 0 from app.js
     });
   };
   // UI part

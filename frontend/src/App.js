@@ -28,7 +28,14 @@ function App() {
                   Cart
                   {cart.cartItems.length > 0 && (
                     <Badge pill bg="danger">
-                      {cart.cartItems.length}
+                      {/**by clicking on Add to cart only quatity gets increased not item of the product till now */}
+                      {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                      {/**
+                       * To show cart quantity -
+                       * a = accumulator, c = currentItem
+                       * set current value for accumulatior = 0
+                       * now go to ProductScreen.js and use quantity for dispatch action
+                       */}
                     </Badge>
                   )}
                 </Link>
