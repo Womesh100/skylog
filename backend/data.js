@@ -5,6 +5,7 @@ const data = {
   // define product as an array's object
   products: [
     {
+      _id: '1', // _id used to compatible with mongodb
       name: 'nike slim shirt',
       slug: 'nike-slim-shirt',
       category: 'shirts',
@@ -17,6 +18,7 @@ const data = {
       description: 'high quality shirts',
     },
     {
+      _id: '2',
       name: 'adidas slim shirt',
       slug: 'adidas-slim-shirt',
       category: 'shirts',
@@ -29,6 +31,7 @@ const data = {
       description: 'high quality shirts',
     },
     {
+      _id: '3',
       name: 'nike slim pants',
       slug: 'nike-slim-pants',
       category: 'pants',
@@ -41,6 +44,7 @@ const data = {
       description: 'high quality pants',
     },
     {
+      _id: '4',
       name: 'adidas fit pants',
       slug: 'adidas-fit-pants',
       category: 'pants',

@@ -68,12 +68,26 @@ function ProductScreen() {
    */
   //get the context
   const { state, dispatch: cxtDispatch } = useContext(Store);
+  // get the state to cart
+  const { cart } = state;
   //usecontext = we have access to state of context and change the context.
-  const addToCartHandler = () => {
+  const addToCartHandler = async () => /*async because of await key*/ {
+    //
+    // check if current product from cart exists in our store or not.
+    const existsItem = cart.cartItems.find((x) => x._id === product._id);
+    // if product exists then increase cart value else set quantity to 1
+    const quantity = existsItem ? existsItem.quantity + 1 : 1;
+    // Ajax request for current product and check it is not less than quantity we add
+    const { data } = await axios.get(`/api/products/${product._id}`);
+    if (data.countInStock < quantity) {
+      window.alerrt('Sorry. Product is out of stock');
+      return;
+    }
     /**
      * to add items in the cart
      * we need to dispatch an action on react context
      */
+
     cxtDispatch({
       type: 'CART_ADD_ITEM',
       payload: { ...product, quantity: 1 },

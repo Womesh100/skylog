@@ -15,17 +15,23 @@ const initialState = {
 function reducer(state, action) {
   switch (action.type) {
     case 'CART_ADD_ITEM':
-      //return as keep all previous values and only update cart items
-      return {
-        ...state,
-        cart: {
-          ...state.cart,
-          cartItems: [
-            ...state.cart.cartItems /**save previous value */,
-            action.payload /** update new cart */,
-          ],
-        },
-      };
+      /**
+       * Get newItem from backend
+       * check existItem from newItem cart
+       * if already an item in cart then use map function to update the current item with the new item 
+          with action.payload, otherwise keep their reviews item in the cart
+       */
+      const newItem = action.payload;
+      const existItem = state.cart.cartItems.find(
+        (item) => item._id === newItem._id
+      );
+      const cartItems = existItem
+        ? state.cart.cartItems.map((item) =>
+            item._id === existItem._id ? newItem : item
+          )
+        : [...state.cart.cartItems, newItem]; // if existItem is null so add new item in the list
+      //return and keep all previous values and only update product this time not only cart value
+      return { ...state, cart: { ...state.cart, cartItems } };
     default:
       return state;
   }

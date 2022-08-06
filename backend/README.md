@@ -60,9 +60,6 @@
 3.  create message component
 4.  create utils.js to define getError function
 
-Implement Add to Cart function
+A. Implement Add to Cart function 1. Create react context - to save cart item in global state and use it in components. (Store.js) 2. define reducer 3. create store provider 4. implement add to cart button click handler.
 
-1. Create react context - to save cart item in global state and use it in components. (Store.js)
-2. define reducer
-3. create store provider
-4. implement add to cart button click handler.
+B. Complete Add to Cart 1. check exist item in the cart 2. check count in stock in backend
