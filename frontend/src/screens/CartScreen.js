@@ -8,6 +8,7 @@ import { Store } from '../Store';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import axios from 'axios';
 
 /**
  * Get access to the context
@@ -19,6 +20,26 @@ export default function CartScreen() {
   const {
     cart: { cartItems },
   } = state;
+
+  const updateCartHandler = async (item, quantity) => {
+    //Ajax request to get data from backend using Product id for current product
+    //and check it is not less than quantity we add
+    const { data } = await axios.get(`/api/products/${item._id}`);
+    if (data.countInStock < quantity) {
+      window.alert('Sorry. Produt is out of stock');
+      return;
+    }
+    /**
+     * to add items in the cart
+     * we need to dispatch an action on react context
+     */
+
+    cxtDispatch({
+      type: 'CART_ADD_ITEM',
+      payload: { ...item, quantity }, //getting quantity value from cart else get quantity as 0 from app.js
+    });
+  };
+
   return (
     <div>
       <Helmet>
@@ -52,12 +73,21 @@ export default function CartScreen() {
                       <Link to={`/product/${item.slug}`}>{item.name}</Link>
                     </Col>
                     <Col md={3}>
-                      <Button variant="light" disabled={item.quantity === 1}>
+                      <Button
+                        variant="light"
+                        onClick={() =>
+                          updateCartHandler(item, item.quantity - 1)
+                        }
+                        disabled={item.quantity === 1}
+                      >
                         <i className="fas fa-minus-circle"></i>
                       </Button>{' '}
                       <span>{item.quantity}</span>{' '}
                       <Button
                         variant="light"
+                        onClick={() =>
+                          updateCartHandler(item, item.quantity + 1)
+                        }
                         disabled={item.quantity === item.countInStock}
                       >
                         <i className="fas fa-plus-circle"></i>
