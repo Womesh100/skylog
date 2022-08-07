@@ -7,6 +7,7 @@ import MessageBox from '../components/MessageBox';
 import { Store } from '../Store';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 /**
  * Get access to the context
@@ -76,7 +77,38 @@ export default function CartScreen() {
             </ListGroup>
           )}
         </Col>
-        <Col md={4}></Col>
+        {/**
+         * action part
+         * add details
+         * subtotal = total product : $ price of products
+         * */}
+        <Col md={4}>
+          <Card>
+            <Card.Body>
+              <ListGroup variant="flush">
+                <ListGroup.Item>
+                  <h3>
+                    Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}{' '}
+                    items): $
+                    {cartItems.reduce((a, c) => a + c.price * c.quantity, 0)}
+                  </h3>
+                </ListGroup.Item>
+                <ListGroup.Item>
+                  {/**d-grid= "full width" */}
+                  <div className="d-grid">
+                    <Button
+                      type="button"
+                      variant="primary"
+                      disabled={cartItems.length === 0}
+                    >
+                      Proceed to Checkout
+                    </Button>
+                  </div>
+                </ListGroup.Item>
+              </ListGroup>
+            </Card.Body>
+          </Card>
+        </Col>
       </Row>
     </div>
   );
