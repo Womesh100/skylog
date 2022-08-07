@@ -3,7 +3,7 @@
 
 import axios from 'axios';
 import { useContext, useEffect, useReducer } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
@@ -37,6 +37,7 @@ const reducer = (state, action) => {
 };
 
 function ProductScreen() {
+  const navigate = useNavigate(); //define useNavigate hook
   const params = useParams();
   const { slug } = params;
 
@@ -92,6 +93,8 @@ function ProductScreen() {
       type: 'CART_ADD_ITEM',
       payload: { ...product, quantity }, //getting quantity value from cart else get quantity as 0 from app.js
     });
+    //Redirect user to CartScreen from here
+    navigate('/cart'); //we can use navigate now to other pages
   };
   // UI part
 
