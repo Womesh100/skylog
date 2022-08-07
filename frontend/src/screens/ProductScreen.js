@@ -76,6 +76,7 @@ function ProductScreen() {
     //
     // check if current product from cart exists in our store or not.
     const existsItem = cart.cartItems.find((x) => x._id === product._id);
+    // Find the quantity
     // if product exists then increase cart value else set quantity to 1
     const quantity = existsItem ? existsItem.quantity + 1 : 1;
     // Ajax request for current product and check it is not less than quantity we add
