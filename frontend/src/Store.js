@@ -32,6 +32,17 @@ function reducer(state, action) {
         : [...state.cart.cartItems, newItem]; // if existItem is null so add new item in the list
       //return and keep all previous values and only update product this time not only cart value
       return { ...state, cart: { ...state.cart, cartItems } };
+    case 'CART_REMOVE_ITEM': {
+      /**
+       * use filter on cart item arrays
+       * if item id is not equal to current id return it
+       * otherwise remove it.
+       */
+      const cartItems = state.cart.cartItems.filter(
+        (item) => item._id !== action.payload._id
+      );
+      return { ...state, cart: { ...state.cart, cartItems } };
+    }
     default:
       return state;
   }

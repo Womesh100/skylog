@@ -21,6 +21,10 @@ export default function CartScreen() {
     cart: { cartItems },
   } = state;
 
+  const removeItemHandler = async (item) => {
+    cxtDispatch({ type: 'CART_REMOVE_ITEM', payload: item });
+  };
+
   const updateCartHandler = async (item, quantity) => {
     //Ajax request to get data from backend using Product id for current product
     //and check it is not less than quantity we add
@@ -96,7 +100,10 @@ export default function CartScreen() {
                     <Col md={3}>${item.price}</Col>
                     {/**For deleting item */}
                     <Col md={2}>
-                      <Button variant="light">
+                      <Button
+                        onClick={() => removeItemHandler(item)}
+                        variant="light"
+                      >
                         <i className="fas fa-trash"></i>
                       </Button>
                       {/**now go to app.js and route a path for CartScreen.js */}
