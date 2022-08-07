@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { Helmet } from 'react-helmet-async';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import MessageBox from '../components/MessageBox';
 import { Store } from '../Store';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -16,6 +16,7 @@ import axios from 'axios';
  * and from cart constract cartItem because list cartItems in the screen
  */
 export default function CartScreen() {
+  const navigate = useNavigate();
   const { state, dispatch: cxtDispatch } = useContext(Store);
   const {
     cart: { cartItems },
@@ -42,6 +43,10 @@ export default function CartScreen() {
       type: 'CART_ADD_ITEM',
       payload: { ...item, quantity }, //getting quantity value from cart else get quantity as 0 from app.js
     });
+  };
+
+  const checkoutHandler = () => {
+    navigate('/signin?redirect=/shipping');
   };
 
   return (
@@ -136,6 +141,7 @@ export default function CartScreen() {
                     <Button
                       type="button"
                       variant="primary"
+                      onClick={checkoutHandler}
                       disabled={cartItems.length === 0}
                     >
                       Proceed to Checkout
