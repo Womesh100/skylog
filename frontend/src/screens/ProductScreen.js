@@ -82,7 +82,7 @@ function ProductScreen() {
     // Ajax request for current product and check it is not less than quantity we add
     const { data } = await axios.get(`/api/products/${product._id}`);
     if (data.countInStock < quantity) {
-      window.alerrt('Sorry. Product is out of stock');
+      window.alert('Sorry. Product is out of stock');
       return;
     }
     /**
@@ -186,6 +186,7 @@ function ProductScreen() {
                       <Button onClick={addToCartHandler} variant="primary">
                         Add to Cart
                       </Button>
+
                       {/* button with full width */}
                     </div>
                   </ListGroup.Item>
