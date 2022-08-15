@@ -73,3 +73,10 @@ D. Complete Cart Screen 1. click handler for increase/decrease item 2. click han
     1. create sign in form
     2. add email and password
     3. add signin button
+
+# Connect to MongoDB Database
+
+    1. create atlas mongodb database on cloud server
+    2. install local mongodb database
+    3. npm install mongoose
+    4. connect to mongodb database
